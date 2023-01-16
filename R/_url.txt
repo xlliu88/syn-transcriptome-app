@@ -1,0 +1,5 @@
+## urls
+
+url.genefamily <- "https://www.arabidopsis.org/download_files/Genes/Gene_families/gene_families_sep_29_09_update.txt"
+url.gene2pmid <- "ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2pubmed.gz"
+url.gff3 <- "https://www.arabidopsis.org/download_files/Genes/Araport11_genome_release/Araport11_GFF3_genes_transposons.201606.gff.gz"

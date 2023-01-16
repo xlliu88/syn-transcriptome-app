@@ -1,0 +1,54 @@
+## shinyapp
+
+## basic structure
+ui <- fluidPage(
+	# inputfunction;
+	slideInput(inputId = "num",              # input value can be accessed in the server function by input$inputId
+		label = "Choose a number",
+		min = 1,
+		max = 100),
+	textInput(inputId = "title", label = "Enter your title"),
+	# outputfunction
+	plotOutput("hist"),
+	verbatimTextOutput("stat"),
+	buttonInput(inputId = "submit", label = "Update")
+)
+
+server <- function(input, outout) {
+	output$hist <- renderPlot({
+		title <- "hist of 100 random numbers"
+		hist(rnorm(100), main = isolate(input$title)})
+
+}
+
+shinyapp(ui = ui, server = server)
+
+
+## input functions
+	slideInput()
+## output functions
+	plotOutput("hist")
+	
+## use server function to assemble inputs into outputs
+	1. save the output that you build to output$...
+	2. Build the output with a render*() function --> renderPlot(), renderImage(), renderTable etc.
+	3. access input values with input$inputId.
+	
+	
+## share the App
+save every files under one directory.
+save the script as app.R  # must be exact this name
+or save ui function as ui.R and,
+	save server function as server.R
+	
+
+## reactive toolkit
+reactive() # to create a reactive object
+data <- reactive({rnorm(input$num)})  # data is a functions                
+                                      # use data() to call data
+# use isolate to make an input to be non-reactive	
+
+observeEnvent() # trigger codes executed by the server.		
+eventReactive() 
+data <- eventReactive(input$submit, {rnorm(input$num)})	
+					# call data() to retrieve data from input
