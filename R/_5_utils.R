@@ -133,7 +133,7 @@ geneSearch <- function(term, db = org.At.tair.db,
                       list(term)
                      )
     
-    fun2 <- function(x) dbi.select(db, key_res[[x]], columns, search_fields[[x]])
+    fun2 <- function(x) AnnotationDbi::select(db, key_res[[x]], columns, search_fields[[x]])
     res2 <- lapply(1:length(key_res), fun2)
     
     res3 <- do.call("bind_rows", res2) %>%
@@ -162,7 +162,7 @@ genesInGo <- function(GOID) {
     GOID <- GOID %>%
         str_replace(., "GO:", "") %>%
         trimws()
-    genes <- dbi::select(org.At.tair.db, keys = GOID, keytype = "GO", columns = "TAIR", )
+    genes <- AnnotationDbi::select(org.At.tair.db, keys = GOID, keytype = "GO", columns = "TAIR", )
     return (genes)
 }
 ## ui functions
