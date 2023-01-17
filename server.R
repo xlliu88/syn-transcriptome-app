@@ -383,8 +383,7 @@ server <- function(input, output, session){
              width = plotsize_adj()$w/DPI,
              height = plotsize_adj()$h/DPI,
              units = PLOT_UNIT,
-             scale = 0.5, #
-             1/FONT_CONVERT,
+             scale = 1,
              dpi = DPI)
       }
   )
